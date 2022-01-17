@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\StripeController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +17,46 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/stripe', function () {
+    return view('stripe');
+})->name('stripe');
+
+Route::get('/stripe-payment', [StripeController::class, 'handleGet']);
+Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');
+
+
+
+Route::get('/stripe2', function (){
+    return view('stripe2',
+    [
+        'intent' => auth()->user()->createSetupIntent(),
+        ]
+    );
+})->middleware(['auth'])->name('stripe2');
+
+
+Route::post('/stripe2',function (Request $request){
+    auth()->user()->newSubscription(
+        'default', $request->plan
+    )->create($request->paymentMethodId);
+})->middleware(['auth'])->name('stripe2');
+
+//clear cache
+//Route::get('/clear-cache', function() {
+//
+//    $configCache = Artisan::call('config:cache');
+//    $clearCache = Artisan::call('cache:clear');
+//     return ('success');
+//});
+
