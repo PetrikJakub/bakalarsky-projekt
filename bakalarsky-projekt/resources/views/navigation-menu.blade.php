@@ -19,15 +19,20 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('stripe') }}" :active="request()->routeIs('stripe')">
-                        {{ __('Stripe') }}
+                    <x-jet-nav-link href="{{ route('pay') }}" :active="request()->routeIs('stripe')">
+                        {{ __('Vykonať platbu') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('stripe2') }}" :active="request()->routeIs('stripe2')">
-                        {{ __('Stripe2') }}
-                    </x-jet-nav-link>
-                </div>
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">--}}
+{{--                    <x-jet-nav-link href="{{ route('stripe') }}" :active="request()->routeIs('stripe')">--}}
+{{--                        {{ __('Stripe') }}--}}
+{{--                    </x-jet-nav-link>--}}
+{{--                </div>--}}
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">--}}
+{{--                    <x-jet-nav-link href="{{ route('stripe2') }}" :active="request()->routeIs('stripe2')">--}}
+{{--                        {{ __('Stripe2') }}--}}
+{{--                    </x-jet-nav-link>--}}
+{{--                </div>--}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -105,11 +110,21 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Zobrazit profil') }}
                             </div>
 
+
+
+
+
+
+
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Profil') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="{{ route('payment_history') }}" :active="request()->routeIs('payment_history')">
+                                {{ __('História platieb') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -127,7 +142,7 @@
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Odhlásiť sa') }}
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>

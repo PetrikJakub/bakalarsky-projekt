@@ -3,7 +3,7 @@
     <x-slot name="header">
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Select Payment Details for Stripe2 test') }}
+            {{ __('Realizácia platby s predvolenou hodnotou - 5 alebo 10€ ') }}
         </h2>
 
     </x-slot>
@@ -60,65 +60,65 @@
                     <br><br>
                 </form>
             </div>
-            <small>Use free test card : Number - 4242424242424242 Brand - Visa	CVC - Any 3 digits	Date - Any future date</small>
+            <small>Použite testovaciu kartu : Číslo - 4242424242424242 Brand - Visa	CVC - Ľubovolné 3 číslice	Dátum - Ľubovoľný dátum</small>
         </div>
     </div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <h3 class="panel-heading row text-center">História platieb</h3>
+{{--        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">--}}
+{{--            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">--}}
+{{--                <h3 class="panel-heading row text-center">História platieb</h3>--}}
 
-                <table class="table">
-                    <thead style="width: 100%">
-                    <tr>
-                        <th style="width: 12%">Stripe ID</th>
-                        <th style="width: 12%">Produkt</th>
-                        <th style="width: 12%">Status</th>
-                        <th style="width: 12%">Cena</th>
-                        <th style="width: 12%">Datum</th>
-                    </tr>
-                    </thead>
-                    <tbody >
-                    <?php
-                    $payments = DB::table('subscriptions')->get();
-                    $payments2 = DB::table('subscription_items')->get();
-                    $id = \Auth::user()->id;
+{{--                <table class="table">--}}
+{{--                    <thead style="width: 100%">--}}
+{{--                    <tr>--}}
+{{--                        <th style="width: 12%">Stripe ID</th>--}}
+{{--                        <th style="width: 12%">Produkt</th>--}}
+{{--                        <th style="width: 12%">Status</th>--}}
+{{--                        <th style="width: 12%">Cena</th>--}}
+{{--                        <th style="width: 12%">Datum</th>--}}
+{{--                    </tr>--}}
+{{--                    </thead>--}}
+{{--                    <tbody >--}}
+{{--                    <?php--}}
+{{--                    $payments = DB::table('subscriptions')->get();--}}
+{{--                    $payments2 = DB::table('subscription_items')->get();--}}
+{{--                    $id = \Auth::user()->id;--}}
 
-                    foreach($payments as $key => $data){
-                        $id2=$data->user_id;
-                        if ($id == $id2){
-                            foreach ($payments2 as $key =>$data2){
-                                if ($data->id == $data2->subscription_id){
-                                    $product = $data2->stripe_product;
+{{--                    foreach($payments as $key => $data){--}}
+{{--                        $id2=$data->user_id;--}}
+{{--                        if ($id == $id2){--}}
+{{--                            foreach ($payments2 as $key =>$data2){--}}
+{{--                                if ($data->id == $data2->subscription_id){--}}
+{{--                                    $product = $data2->stripe_product;--}}
 
-                                    if ($product == 'prod_Kjc7PGB2PZ9XbA') $prod = 'Zlaty donate';
-                                        else if ($product == 'prod_KjGJ6k09ekn10Z') $prod = 'Strieborny donate';
-                                            else $prod = 'non defined';
+{{--                                    if ($product == 'prod_Kjc7PGB2PZ9XbA') $prod = 'Zlaty donate';--}}
+{{--                                        else if ($product == 'prod_KjGJ6k09ekn10Z') $prod = 'Strieborny donate';--}}
+{{--                                            else $prod = 'non defined';--}}
 
-                                    $price = $data2->stripe_price;
-                                    if ($price == 'price_1K3nn3Ju4Eh4pdQ4PQbD7MKZ') $pric = '5€';
-                                        else if ($price == 'price_1K48tdJu4Eh4pdQ4UVD5oBJF') $pric = '10€';
-                                            else $pric = 'non defined';
+{{--                                    $price = $data2->stripe_price;--}}
+{{--                                    if ($price == 'price_1K3nn3Ju4Eh4pdQ4PQbD7MKZ') $pric = '5€';--}}
+{{--                                        else if ($price == 'price_1K48tdJu4Eh4pdQ4UVD5oBJF') $pric = '10€';--}}
+{{--                                            else $pric = 'non defined';--}}
 
-                                    echo("
-                                    <tr>
-                                        <th>{$data->stripe_id}</th>
-                                        <th>{$prod}</th>
-                                        <th>{$data->stripe_status}</th>
-                                        <th>{$pric}</th>
-                                        <th>{$data->created_at}</th>
-                                    </tr>
-                                    ");
-                                }
-                            }
-                        }
-                    }
-                    ?>
-                    </tbody>
-                </table>
+{{--                                    echo("--}}
+{{--                                    <tr>--}}
+{{--                                        <th>{$data->stripe_id}</th>--}}
+{{--                                        <th>{$prod}</th>--}}
+{{--                                        <th>{$data->stripe_status}</th>--}}
+{{--                                        <th>{$pric}</th>--}}
+{{--                                        <th>{$data->created_at}</th>--}}
+{{--                                    </tr>--}}
+{{--                                    ");--}}
+{{--                                }--}}
+{{--                            }--}}
+{{--                        }--}}
+{{--                    }--}}
+{{--                    ?>--}}
+{{--                    </tbody>--}}
+{{--                </table>--}}
 
 
-        </div>
-    </div>
+{{--        </div>--}}
+{{--    </div>--}}
     @push('scripts')
 
         <script src="https://js.stripe.com/v3/"></script>

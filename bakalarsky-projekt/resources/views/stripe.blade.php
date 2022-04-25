@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Select Payment Details for Stripe test') }}
+            {{ __('Realizácia platby s Vami zvolenou hodnotou') }}
         </h2>
     </x-slot>
 
@@ -54,14 +54,14 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="row text-center">
-                                        <h3 class="panel-heading">Payment Details</h3>
+                                        <h3 class="panel-heading">Platobné údaje</h3>
                                     </div>
                                 </div>
                                 <div class="panel-body ml-1">
 
                                     @if (Session::has('success'))
                                         <div class="alert alert-success text-center">
-                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+{{--                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>--}}
                                             <p>{{ Session::get('success') }}</p>
                                         </div>
                                     @endif
@@ -78,7 +78,7 @@
 
                                         <div class='form-row row'>
                                             <div class='col-xs-12 form-group required'>
-                                                <x-jet-label class='control-label' value="{{ __('Name on Card') }}"  />
+                                                <x-jet-label class='control-label' value="{{ __('Meno vlastníka karty') }}"  />
                                                 <x-jet-input
                                                     class='form-control block mt-1 w-full' size='4' type='text'/>
                                             </div>
@@ -86,7 +86,7 @@
 
                                         <div class='form-row row'>
                                             <div class='col-xs-12 form-group required'>
-                                                <x-jet-label class='control-label'  value="{{ __('Price') }}"  />
+                                                <x-jet-label class='control-label'  value="{{ __('Suma') }}"  />
                                                 <x-jet-input
                                                     class='form-control block mt-1 w-full' type='number'  step="0.01" id="price"/>
                                             </div>
@@ -94,7 +94,7 @@
 
                                         <div class='form-row row'>
                                             <div class='col-xs-12 form-group card required'>
-                                                <x-jet-label class='control-label' value="{{ __('Card Number') }}" />
+                                                <x-jet-label class='control-label' value="{{ __('Číslo karty') }}" />
                                                 <x-jet-input
                                                     autocomplete='off' class='form-control card-num block mt-1 w-full' size='20'
                                                     type='text'/>
@@ -108,13 +108,13 @@
                                                        type='text'/>
                                             </div>
                                             <div class="column form-group expiration required">
-                                                <x-jet-label class='control-label' value="{{ __('Expiration Month value') }}" />
+                                                <x-jet-label class='control-label' value="{{ __('Mesiac expirácie karty') }}" />
                                                 <x-jet-input
                                                     class='form-control card-expiry-month block mt-1 w-full ' placeholder='MM' size='2'
                                                     type='text'/>
                                             </div>
                                             <div class="column form-group expiration required">
-                                                <x-jet-label class='control-label' value="{{ __('Expiration Year') }}" />
+                                                <x-jet-label class='control-label' value="{{ __('Rok expirácie karty') }}" />
                                                 <x-jet-input
                                                     class='form-control card-expiry-year block mt-1 w-full ' placeholder='YYYY' size='4'
                                                     type='text'/>
@@ -123,12 +123,12 @@
                                         <br>
                                         <div class='form-row row'>
                                             <div class='col-md-12 hide error form-group'>
-                                                <div class='alert-danger alert'><small>Fix the errors before you begin.</small></div>
+                                                <div class='alert-danger alert'><small>Opravte si chyby pred dokončením platby.</small></div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 ">
-                                                <x-jet-button class=" vertical-center " type="submit">Donate</x-jet-button>
+                                                <x-jet-button class=" vertical-center " type="submit">Prispieť</x-jet-button>
                                             </div>
                                         </div>
                                         <br>
@@ -204,7 +204,7 @@
 
                 </html>
             </div>
-            <small>Use free test card : Number - 4242424242424242 Brand - Visa	CVC - Any 3 digits	Date - Any future date</small>
+            <small>Použite testovaciu kartu : Číslo - 4242424242424242 Brand - Visa	CVC - Ľubovolné 3 číslice	Dátum - Ľubovoľný dátum</small>
         </div>
     </div>
 </x-app-layout>

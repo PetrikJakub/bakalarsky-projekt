@@ -6,9 +6,9 @@
     </x-slot>
 
     {{--    <div class="py-12">--}}
-{{--        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">--}}
-{{--            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">--}}
-{{--                                <x-jet-welcome />--}}
+        {{--        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">--}}
+            {{--            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">--}}
+                {{--                                <x-jet-welcome />--}}
                 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                         <h1 style="color:deepskyblue">Integrácia platobnej brány do webovej aplikácie</h1>
@@ -42,9 +42,9 @@
                                 </a>
                             </div>
                         </div>
-                 </div>
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+                    </div>
+                    {{--            </div>--}}
+                {{--        </div>--}}
+            {{--    </div>--}}
 </x-app-layout>
 

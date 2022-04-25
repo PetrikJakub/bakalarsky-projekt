@@ -28,9 +28,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/payment_history', function () {
+    return view('payment_history');
+})->name('payment_history');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/stripe', function () {
     return view('stripe');
 })->name('stripe');
+Route::middleware(['auth:sanctum', 'verified'])->get('/pay', function () {
+    return view('pay');
+})->name('pay');
+
 
 Route::get('/stripe-payment', [StripeController::class, 'handleGet']);
 Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');

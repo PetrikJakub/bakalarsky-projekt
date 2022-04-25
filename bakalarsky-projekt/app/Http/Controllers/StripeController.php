@@ -26,10 +26,18 @@ class StripeController extends Controller
            "amount" => $request->price,
             "currency" => "eur",
             "source" => $request->stripeToken,
-            "description" => "Making test payment."
+            "description" => $request->user()->email,
+
+
+
+
+
+//            "customer" => $request->user()->name
+
+//            "description" => "Making test payment."
         ]);
 
-        Session::flash('success', 'Payment has been successfully processed.');
+        Session::flash('success', 'Platba prebehla úspešne.');
 
         return back();
     }
