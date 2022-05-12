@@ -16,6 +16,7 @@
 
                     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
                     <style type="text/css">
+
                         .column {
                             float: left;
                             width: 33.33%;
@@ -61,8 +62,12 @@
 
                                     @if (Session::has('success'))
                                         <div class="alert alert-success text-center">
+                                            <div style=" padding: 3%;border-radius: 12px;" class=" mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg Row">
+                                                <div class="alert alert-success" style="background-color: green;border-radius: 2px; text-align: center" >
 {{--                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>--}}
                                             <p>{{ Session::get('success') }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endif
 
@@ -80,7 +85,7 @@
                                             <div class='col-xs-12 form-group required'>
                                                 <x-jet-label class='control-label' value="{{ __('Meno vlastníka karty') }}"  />
                                                 <x-jet-input
-                                                    class='form-control block mt-1 w-full' size='4' type='text'/>
+                                                    class='form-control block mt-1 w-full' size='4' type='text' name="name"/>
                                             </div>
                                         </div>
 
@@ -88,7 +93,7 @@
                                             <div class='col-xs-12 form-group required'>
                                                 <x-jet-label class='control-label'  value="{{ __('Suma') }}"  />
                                                 <x-jet-input
-                                                    class='form-control block mt-1 w-full' type='number'  step="0.01" id="price"/>
+                                                    class='form-control block mt-1 w-full' type='number'  step="0.01" id="price" name="stripe_price"/>
                                             </div>
                                         </div>
 
@@ -201,6 +206,9 @@
                         }
                     });
                 </script>
+
+
+
 
                 </html>
             </div>

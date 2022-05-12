@@ -3,7 +3,7 @@
     <x-slot name="header">
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('História platieb') }}
+            {{ __('Zoznam mojich predplatných') }}
         </h2>
 
     </x-slot>
@@ -24,28 +24,32 @@
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
 
-        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <div style="padding: 2%" class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
 
 
-            <table class="table">
-                <thead style="width: 100%">
-                <tr>
-                    <th style="width: 12%">Stripe ID</th>
-                    <th style="width: 12%">Produkt</th>
-                    <th style="width: 12%">Status</th>
-                    <th style="width: 12%">Cena</th>
-                    <th style="width: 12%">Dátum</th>
+            <table class="table" >
+                <thead style="width: 100%;margin-bottom: 40px ;">
+                <tr style="font-size: 18px; text-decoration: underline">
+                    <th style="width: 12%;padding: 20px">Stripe ID</th>
+                    <th style="width: 12%;padding: 20px">Produkt</th>
+                    <th style="width: 12%;padding: 20px">Status</th>
+                    <th style="width: 12%;padding: 20px">Cena</th>
+                    <th style="width: 12%;padding: 20px">Dátum</th>
                 </tr>
                 </thead>
-                <tbody >
+                <tbody style="color: rgba(0,0,0,0.6)">
                 <?php
                 $payments = DB::table('subscriptions')->get();
                 $payments2 = DB::table('subscription_items')->get();
                 $id = \Auth::user()->id;
-
+                $count = 0;
                 foreach($payments as $key => $data){
                     $id2=$data->user_id;
+
+
                     if ($id == $id2){
+                        $count ++;
+
                         foreach ($payments2 as $key =>$data2){
                             if ($data->id == $data2->subscription_id){
                                 $product = $data2->stripe_product;
@@ -57,21 +61,24 @@
                                 $price = $data2->stripe_price;
                                 if ($price == 'price_1K3nn3Ju4Eh4pdQ4PQbD7MKZ') $pric = '5€';
                                 else if ($price == 'price_1K48tdJu4Eh4pdQ4UVD5oBJF') $pric = '10€';
-                                else $pric = 'non defined';
+                                else $price = 'non defined';
 
-                                echo("
-                                    <tr>
-                                        <th>{$data->stripe_id}</th>
-                                        <th>{$prod}</th>
-                                        <th>{$data->stripe_status}</th>
-                                        <th>{$pric}</th>
-                                        <th>{$data->created_at}</th>
-                                    </tr>
-                                    ");
-                            }
+
+
+                                    echo("
+                                        <tr >
+                                            <th style='padding-bottom: 1%'>{$data->stripe_id}</th>
+                                            <th>{$prod}</th>
+                                            <th>{$data->stripe_status}</th>
+                                            <th>{$pric}</th>
+                                            <th>{$data->created_at}</th>
+                                        </tr>
+                                        ");
+                                }
                         }
                     }
-                }
+
+                }if ($count == 0) echo ("<h2>Doposiaľ si neuskutočnil žiadne pravideľné mesačné platby!</h2>");
                 ?>
                 </tbody>
             </table>

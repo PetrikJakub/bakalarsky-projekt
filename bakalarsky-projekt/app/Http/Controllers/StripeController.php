@@ -22,6 +22,8 @@ class StripeController extends Controller
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         echo($request->price);
+
+
         Stripe\Charge::create ([
            "amount" => $request->price,
             "currency" => "eur",

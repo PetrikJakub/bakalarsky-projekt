@@ -27,7 +27,7 @@
                     @csrf
                     <div class="mb-4">
                         <div class=" text-center"><br>
-                            <h3 class="panel-heading">Payment Details</h3>
+                            <h3 class="panel-heading">Platobné údaje</h3>
                         </div>
                         <br>
                         <div class=" vertical-center">
@@ -37,7 +37,7 @@
                         <br>
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
-                                <x-jet-label for="card-holder-name" value="{{ __('Card-holder name') }}"  />
+                                <x-jet-label for="card-holder-name" value="{{ __('Meno vlastníka karty') }}"  />
                                 <x-jet-input
                                     class=' block mt-1 w-full' size='4' type="text" name="card-holder-name" id="card-holder-name"/>
                             </div>
@@ -45,7 +45,7 @@
                         <br>
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group card required'>
-                                <x-jet-label for="card-element" class='control-label' value="{{ __('Credit or debit card') }}" />
+                                <x-jet-label for="card-element" class='control-label' value="{{ __('Číslo karty') }}" />
                                 <div id="card-element"></div>
                                 <div id="card-errors" role="alert"></div>
                             </div>
@@ -54,7 +54,7 @@
                     <br>
                     <div class="col-xs-12 ">
                     <x-jet-button class=" vertical-center">
-                        {{ __('Subscribe') }}
+                        {{ __('Prispieť') }}
                     </x-jet-button>
                     </div>
                     <br><br>
@@ -199,7 +199,7 @@
                     success: function(data)
                     {
                         location.reload();
-                        alert('Payment has been successfully processed.');
+                        alert('Platba prebehla úspešne');
                     }
                 });
             }

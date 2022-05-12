@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\StripeController;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PayPalPaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/pay', function () {
     return view('pay');
 })->name('pay');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/paypal', function () {
+    return view('paypal');
+})->name('paypal');
+
 
 Route::get('/stripe-payment', [StripeController::class, 'handleGet']);
 Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');
@@ -47,12 +52,8 @@ Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('s
 
 Route::get('/stripe2', function (){
     return view('stripe2',
-    [
-        'intent' => auth()->user()->createSetupIntent(),
-        ]
-    );
+    ['intent' => auth()->user()->createSetupIntent(),]);
 })->middleware(['auth'])->name('stripe2');
-
 
 Route::post('/stripe2',function (Request $request){
     auth()->user()->newSubscription(
@@ -67,4 +68,15 @@ Route::post('/stripe2',function (Request $request){
 //    $clearCache = Artisan::call('cache:clear');
 //     return ('success');
 //});
+
+//Route::get('/paypal', function () {
+//    return view('paypal');
+//})->name('paypal');
+//Route::post('process-transaction', [PayPalPaymentController::class, 'processTransaction'])->name('paypal.payment');
+Route::get('create-transaction', [PayPalPaymentController::class, 'createTransaction'])->name('createTransaction');
+Route::get('process-transaction', [PayPalPaymentController::class, 'processTransaction'])->name('processTransaction');
+Route::get('success-transaction', [PayPalPaymentController::class, 'successTransaction'])->name('successTransaction');
+Route::get('cancel-transaction', [PayPalPaymentController::class, 'cancelTransaction'])->name('cancelTransaction');
+
+
 
